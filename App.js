@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, ScrollView, StyleSheet } from 'react-native'
 
 import Toggle from './Toggle'
 
@@ -19,9 +19,14 @@ export default class App extends React.Component {
     const secondaryAxis = flexDirection === 'row' ? 'Vertical' : 'Horizontal'
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text style={styles.text}>Hello World!</Text>
         <Image style={styles.image} source={{uri: 'https://avatars1.githubusercontent.com/u/3542513'}} />
+        <ScrollView horizontal>
+          <View style={styles.boxSmall} />
+          <View style={styles.boxSmall} />
+          <View style={styles.boxSmall} />
+        </ScrollView>
         <Toggle
           label={'Primary axis (flexDirection)'}
           value={flexDirection}
@@ -45,7 +50,7 @@ export default class App extends React.Component {
           <View style={styles.box} />
           <View style={styles.box} />
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -54,8 +59,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  boxSmall: {
+    width: 200,
+    height: 200,
+    marginBottom: 10,
+    marginRight: 10,
+    backgroundColor: 'skyblue',
+  },
   text: {
-    backgroundColor: 'whitesmoke',
+    backgroundColor: 'steelblue',
     color: '#4A90E2',
     fontSize: 24,
     padding: 10,
