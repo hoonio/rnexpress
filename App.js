@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native'
 
 import Toggle from './Toggle'
+import ComponentList from './ComponentList'
 
 export default class App extends React.Component {
 
@@ -22,6 +23,7 @@ export default class App extends React.Component {
       <ScrollView style={styles.container}>
         <Text style={styles.text}>Hello World!</Text>
         <Image style={styles.image} source={{uri: 'https://avatars1.githubusercontent.com/u/3542513'}} />
+        <ComponentList />
         <ScrollView horizontal>
           <View style={styles.boxSmall} />
           <View style={styles.boxSmall} />
