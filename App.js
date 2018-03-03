@@ -1,45 +1,64 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
 
-class Counter extends React.Component {
-  state = {count: 0}
-
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({count: this.state.count + 1})
-    }, 1000)
-  }
-
-  render() {
-    const {count} = this.state
-    const {color, size} = this.props
-
-    return (
-      <Text style={{color, fontSize: size}}>
-        {count}
-      </Text>
-    )
-  }
-}
+import Toggle from './Toggle'
 
 export default class App extends React.Component {
+
+  state = {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+
   render() {
+    const {flexDirection, alignItems, justifyContent} = this.state
+    const layoutStyle = {flexDirection, justifyContent, alignItems}
+
+    const primaryAxis = flexDirection === 'row' ? 'Horizontal' : 'Vertical'
+    const secondaryAxis = flexDirection === 'row' ? 'Vertical' : 'Horizontal'
+
     return (
       <View style={styles.container}>
-        <Counter color={'lightblue'} size={16} />
-        <Counter color={'skyblue'} size={32} />
-        <Counter color={'steelblue'} size={80} />
-        <Counter color={'darkblue'} size={140} />
+        <Toggle
+          label={'Primary axis (flexDirection)'}
+          value={flexDirection}
+          options={['row', 'column']}
+          onChange={(option) => this.setState({flexDirection: option})}
+        />
+        <Toggle
+          label={primaryAxis + ' distribution (justifyContent)'}
+          value={justifyContent}
+          options={['flex-start', 'center', 'flex-end', 'space-around', 'space-between']}
+          onChange={(option) => this.setState({justifyContent: option})}
+        />
+        <Toggle
+          label={secondaryAxis + ' alignment (alignItems)'}
+          value={alignItems}
+          options={['flex-start', 'center', 'flex-end', 'stretch']}
+          onChange={(option) => this.setState({alignItems: option})}
+        />
+        <View style={[styles.layout, layoutStyle]}>
+          <View style={styles.box} />
+          <View style={styles.box} />
+          <View style={styles.box} />
+        </View>
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-});
+  layout: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.05)',
+  },
+  box: {
+    padding: 25,
+    backgroundColor: 'steelblue',
+    margin: 5,
+  },
+})
