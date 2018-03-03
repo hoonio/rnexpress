@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
 import Toggle from './Toggle'
 
@@ -20,6 +20,7 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
+        <Text style={styles.text}>Hello World!</Text>
         <Toggle
           label={'Primary axis (flexDirection)'}
           value={flexDirection}
@@ -51,6 +52,12 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  text: {
+    backgroundColor: 'whitesmoke',
+    color: '#4A90E2',
+    fontSize: 24,
+    padding: 10,
   },
   layout: {
     flex: 1,
